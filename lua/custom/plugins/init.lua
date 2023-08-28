@@ -97,4 +97,6 @@ return {
 			end, { expr = true })
 		end,
 	},
+	-- Scope (for tabs)
+	{ "tiagovla/scope.nvim", config = function() require("scope").setup({}) end },
 }

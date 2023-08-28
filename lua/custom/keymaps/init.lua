@@ -1,22 +1,44 @@
 local set = vim.keymap.set
 
+local function mysplit(inputstr, sep)
+	if sep == nil then
+		sep = "%s"
+	end
+	local t = {}
+	for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+		table.insert(t, str)
+	end
+	return t
+end
+
+local function mytrim(s)
+	return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
 local function clean_buffers()
 	local output = vim.api.nvim_command_output "ls"
 	local buffers_table = {}
 	-- split output into lines
 	for i in vim.gsplit(output, "\n") do
-		local splits = vim.split(i, '"*"')
+		local splits = mysplit(i, '"*"')
 		local filename = splits[2]
-		local trimmed = vim.trim(splits[1])
-		local id = vim.split(trimmed, " ")
+		local trimmed = mytrim(splits[1])
+		local id = mysplit(trimmed, " ")
 		table.insert(buffers_table, { id[1], filename })
 	end
+
 
 	for _, name in ipairs(buffers_table) do
 		if name[2] == "[No Name]" then
 			vim.api.nvim_buf_delete(tonumber(name[1]), { force = true })
+			if #buffers_table == 1 then
+				vim.api.nvim_command "q"
+				return
+			end
 		end
 	end
+	-- if vim.gsplit(vim.api.nvim_command_output "ls", "\n") == 1 then
+	-- 	vim.api.nvim_command "q"
+	-- end
 end
 
 -- Save folds state
@@ -82,14 +104,14 @@ set('n', '<S-PageUp>', function()
 	if buf_name ~= "" and tabpage_num > 1 then
 		-- Close The current buffer
 		-- require("nvchad_ui.tabufline").close_buffer()
-		vim.api.nvim_exec('bd', false)
+		vim.api.nvim_command('bd')
+		clean_buffers()
 		-- Go to the previous tab and create a new buffer
 		vim.api.nvim_command(
 			"tabprevious | e " ..
 			buf_name .. " | normal " .. "G" .. coordinates[1] .. "gg" .. coordinates[2] .. "l"
 		)
 	end
-	clean_buffers()
 end)
 set('n', '<S-PageDown>', function()
 	-- Get Current buffer info
@@ -101,10 +123,11 @@ set('n', '<S-PageDown>', function()
 	local tabpages_count = #tabpages
 	local tabpage_num = vim.api.nvim_tabpage_get_number(0)
 
-	if buf_name ~= "" then
+	if buf_name ~= "" and tabpages_count > 1 then
 		-- Close The current buffer
 		-- require("nvchad_ui.tabufline").close_buffer()
-		vim.api.nvim_exec('bd', false)
+		vim.api.nvim_command('bd')
+		clean_buffers()
 
 		if tabpage_num < tabpages_count then
 			-- Go to the next tab and create a new buffer
@@ -120,5 +143,4 @@ set('n', '<S-PageDown>', function()
 			)
 		end
 	end
-	clean_buffers()
 end)
