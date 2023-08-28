@@ -400,9 +400,10 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
+  volar = {'vue'},
   rust_analyzer = {},
-  tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs'} },
+  tsserver = {'vue'},
+  html = { filetypes = { 'html', 'twig', 'hbs', 'vue'} },
 
   lua_ls = {
     Lua = {
