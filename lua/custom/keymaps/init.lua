@@ -40,6 +40,11 @@ set('n', '<C-s>', '<cmd>w<CR>')
 -- NvimTree Toggle Mappings
 set('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
 
+-- Buffers
+set('n', '<C-c>', '<cmd>bd<CR>') -- close
+set('n', '<tab>', '<cmd>bnext<CR>')
+set('n', '<S-tab>', '<cmd>bprevious<CR>')
+
 -- Window Mappings
 set('n', '<C-q>', '<cmd>q<CR>') -- close window
 set('n', '<C-l>', '<C-w>l')     -- move right
