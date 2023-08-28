@@ -21,21 +21,20 @@ end
 
 -- Save folds state
 vim.api.nvim_exec(
-  [[
+	[[
 augroup AutoSaveFolds
   autocmd!
   au BufWinLeave ?* mkview 1
   au BufWinEnter ?* silent! loadview 1
 augroup END
 ]],
-  false
+	false
 )
 
--- relative number
-set('n', '<leader>nr', '<cmd>set rnu!<CR>', {desc = '[N]umber [Relative'})
-
--- save
-set('n', '<C-s>', '<cmd>w<CR>')
+-- General
+set('n', '<leader>nr', '<cmd>set rnu!<CR>', { desc = '[N]umber [R]elative' }) -- relative number
+set('n', '<C-s>', '<cmd>w<CR>')                                               -- save
+set('n', '<Esc>', '<cmd>noh<CR>')                                             -- no highlight
 
 -- NvimTree Toggle Mappings
 set('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
@@ -82,8 +81,8 @@ set('n', '<S-PageUp>', function()
 
 	if buf_name ~= "" and tabpage_num > 1 then
 		-- Close The current buffer
-		require("nvchad_ui.tabufline").close_buffer()
-
+		-- require("nvchad_ui.tabufline").close_buffer()
+		vim.api.nvim_exec('bd', false)
 		-- Go to the previous tab and create a new buffer
 		vim.api.nvim_command(
 			"tabprevious | e " ..
@@ -92,7 +91,7 @@ set('n', '<S-PageUp>', function()
 	end
 	clean_buffers()
 end)
-set('n', '<S-PageDown', function()
+set('n', '<S-PageDown>', function()
 	-- Get Current buffer info
 	local buf_name = vim.api.nvim_buf_get_name(0)
 	local coordinates = vim.api.nvim_win_get_cursor(0)
@@ -104,7 +103,8 @@ set('n', '<S-PageDown', function()
 
 	if buf_name ~= "" then
 		-- Close The current buffer
-		require("nvchad_ui.tabufline").close_buffer()
+		-- require("nvchad_ui.tabufline").close_buffer()
+		vim.api.nvim_exec('bd', false)
 
 		if tabpage_num < tabpages_count then
 			-- Go to the next tab and create a new buffer
