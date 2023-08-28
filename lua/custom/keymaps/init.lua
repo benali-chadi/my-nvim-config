@@ -59,7 +59,7 @@ set('n', '<C-s>', '<cmd>w<CR>')                                               --
 set('n', '<Esc>', '<cmd>noh<CR>')                                             -- no highlight
 
 -- NvimTree Toggle Mappings
-set('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
+set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Buffers
 set('n', '<C-c>', '<cmd>bd<CR>') -- close
