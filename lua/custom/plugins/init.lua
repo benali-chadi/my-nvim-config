@@ -98,5 +98,23 @@ return {
 		end,
 	},
 	-- Scope (for tabs)
-	{ "tiagovla/scope.nvim", config = function() require("scope").setup({}) end },
+	{
+		"tiagovla/scope.nvim",
+		config = function() require("scope").setup({}) end
+	},
+	-- mini surrond
+	{
+		'echasnovski/mini.surround',
+		version = false,
+		config = function()
+			require(
+				'mini.surround').setup()
+		end
+	},
+	-- mini animate
+	{
+		'echasnovski/mini.animate',
+		version = false,
+		config = function() require('mini.animate').setup() end
+	},
 }
