@@ -62,6 +62,7 @@ set('n', '<Esc>', '<cmd>noh<CR>')                                             --
 set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Buffers
+set('n', '<C-n>', '<tab>')       -- for the weird vim behaviour, to remap <C-i> ot <C-n> before remapping <tab>
 set('n', '<C-c>', '<cmd>bd<CR>') -- close
 set('n', '<tab>', '<cmd>bnext<CR>')
 set('n', '<S-tab>', '<cmd>bprevious<CR>')
