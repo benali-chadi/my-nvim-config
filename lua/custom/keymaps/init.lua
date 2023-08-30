@@ -62,7 +62,8 @@ set('n', '<Esc>', '<cmd>noh<CR>')                                             --
 set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Buffers
-set('n', '<C-n>', '<tab>')       -- for the weird vim behaviour, to remap <C-i> ot <C-n> before remapping <tab>
+set('n', '<C-x>', '<tab>')       -- for the weird vim behaviour, to remap <C-i> to <C-n> before remapping <tab>
+-- set('n', '<C-j>', '<C-o>')       -- jump back
 set('n', '<C-c>', '<cmd>bd<CR>') -- close
 set('n', '<tab>', '<cmd>bnext<CR>')
 set('n', '<S-tab>', '<cmd>bprevious<CR>')
@@ -73,6 +74,11 @@ set('n', '<C-l>', '<C-w>l')     -- move right
 set('n', '<C-h>', '<C-w>h')     -- move left
 set('n', '<C-j>', '<C-w>j')     -- move down
 set('n', '<C-k>', '<C-w>k')     -- move up
+-- resize windows
+set('n', '<C-Right>', '<C-w>>')
+set('n', '<C-Left>', '<C-w><')
+set('n', '<C-Up>', '<C-w>+')
+set('n', '<C-Down>', '<C-w>-')
 
 -- Move Lines
 -- normal mode
