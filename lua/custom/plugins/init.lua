@@ -86,13 +86,13 @@ return {
 			vim.keymap.set("i", "<C-g>", function()
 				return vim.fn["codeium#Accept"]()
 			end, { expr = true })
-			vim.keymap.set("i", "<c-;>", function()
+			vim.keymap.set("i", "<C-;>", function()
 				return vim.fn["codeium#CycleCompletions"](1)
 			end, { expr = true })
-			vim.keymap.set("i", "<c-,>", function()
+			vim.keymap.set("i", "<C-,>", function()
 				return vim.fn["codeium#CycleCompletions"](-1)
 			end, { expr = true })
-			vim.keymap.set("i", "<c-x>", function()
+			vim.keymap.set("i", "<C-x>", function()
 				return vim.fn["codeium#Clear"]()
 			end, { expr = true })
 		end,
@@ -117,4 +117,11 @@ return {
 		version = false,
 		config = function() require('mini.animate').setup() end
 	},
+	-- colorizer
+	{
+		'norcalli/nvim-colorizer.lua',
+		config = function()
+			require('colorizer').setup()
+		end
+	}
 }
