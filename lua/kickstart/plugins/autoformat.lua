@@ -54,12 +54,7 @@ return {
           vim.api.nvim_create_autocmd('BufWritePost', {
             group = get_augroup(client),
             buffer = bufnr,
-            callback = function()
-              print('Formatting python file: ' .. bufname)
-              -- run autopep8 command
-              -- os.execute('autopep8 --in-place --aggressive --aggressive ' .. bufname)
-              vim.api.nvim_command('!autopep8 --in-place --aggressive --aggressive ' .. bufname)
-            end
+            command = 'silent !autopep8 --in-place --aggressive --aggressive ' .. bufname,
           })
           return
         end
