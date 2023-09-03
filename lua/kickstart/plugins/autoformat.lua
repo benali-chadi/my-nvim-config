@@ -41,11 +41,9 @@ return {
 
         local bufname = vim.api.nvim_buf_get_name(bufnr)
 
-        print('Attaching to client: ' .. client.name .. ' buffer name is: ' .. vim.api.nvim_buf_get_name(bufnr))
 
         -- Only attach to clients that support document formatting
         if not client.server_capabilities.documentFormattingProvider and client.name ~= 'pyright' then
-          print('Skipping formatting for client: ' .. client.name)
           return
         end
 
