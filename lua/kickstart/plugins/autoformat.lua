@@ -39,16 +39,36 @@ return {
         local client = vim.lsp.get_client_by_id(client_id)
         local bufnr = args.buf
 
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+        print('Attaching to client: ' .. client.name .. ' buffer name is: ' .. vim.api.nvim_buf_get_name(bufnr))
+
         -- Only attach to clients that support document formatting
-        if not client.server_capabilities.documentFormattingProvider then
+        if not client.server_capabilities.documentFormattingProvider and client.name ~= 'pyright' then
+          print('Skipping formatting for client: ' .. client.name)
+          return
+        end
+
+        -- To format python files
+        if client.name == 'pyright' then
+          vim.api.nvim_create_autocmd('BufWritePost', {
+            group = get_augroup(client),
+            buffer = bufnr,
+            callback = function()
+              print('Formatting python file: ' .. bufname)
+              -- run autopep8 command
+              -- os.execute('autopep8 --in-place --aggressive --aggressive ' .. bufname)
+              vim.api.nvim_command('!autopep8 --in-place --aggressive --aggressive ' .. bufname)
+            end
+          })
           return
         end
 
         -- Tsserver usually works poorly. Sorry you work with bad languages
         -- You can remove this line if you know what you're doing :)
-        if client.name == 'tsserver' then
-          return
-        end
+        -- if client.name == 'tsserver' then
+        --   return
+        -- end
 
         -- Create an autocmd that will run *before* we save the buffer.
         --  Run the formatting command for the LSP that has just attached.
