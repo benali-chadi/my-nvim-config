@@ -5,6 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocal = ' '
 
 vim.opt.termguicolors = true
+vim.opt.background = "dark"
 
 require('custom.keymaps')
 -- Install package manager
@@ -119,8 +120,14 @@ require('lazy').setup({
           }
         }
       })
-      vim.cmd.colorscheme 'nightfox'
+      -- vim.cmd.colorscheme 'nightfox'
     end
+  },
+  {
+    'Shatur/neovim-ayu',
+    config = function()
+      vim.cmd.colorscheme 'ayu-dark'
+    end,
   },
   {
     -- Set lualine as statusline
@@ -129,7 +136,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'nightfox',
+        theme = 'ayu',
         component_separators = '|',
         section_separators = '',
       },
