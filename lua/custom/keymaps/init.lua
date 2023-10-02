@@ -42,16 +42,13 @@ local function clean_buffers()
 end
 
 -- Save folds state
-vim.api.nvim_exec(
-	[[
+vim.cmd([[
 augroup AutoSaveFolds
   autocmd!
   au BufWinLeave ?* mkview 1
   au BufWinEnter ?* silent! loadview 1
 augroup END
-]],
-	false
-)
+]])
 
 -- General
 set('n', '<leader>nr', '<cmd>set rnu!<CR>', { desc = '[N]umber [R]elative' }) -- relative number

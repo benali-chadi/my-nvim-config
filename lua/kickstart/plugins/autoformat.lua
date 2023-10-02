@@ -59,9 +59,14 @@ return {
 
         -- Tsserver usually works poorly. Sorry you work with bad languages
         -- You can remove this line if you know what you're doing :)
-        -- if client.name == 'tsserver' then
-        --   return
-        -- end
+        if client.name == 'tsserver' then
+          vim.api.nvim_create_autocmd('BufWritePost', {
+            group = get_augroup(client),
+            buffer = bufnr,
+            command = 'silent !prettier --print-width 80 --tab-width 2 --use-tabs --write ' .. bufname,
+          })
+          return
+        end
 
         -- Create an autocmd that will run *before* we save the buffer.
         --  Run the formatting command for the LSP that has just attached.
