@@ -156,6 +156,9 @@ require('lazy').setup({
       indent = { char = '┊' },
       -- show_trailing_blankline_indent = true,
     },
+    config = function()
+      require('ibl').setup {}
+    end
   },
 
   -- "gc" to comment visual regions/lines
@@ -286,8 +289,6 @@ require('telescope').setup {
   },
 }
 
--- Indent-blankline setup
-require('ibl').setup()
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')

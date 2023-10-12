@@ -148,3 +148,7 @@ set('n', '<S-PageDown>', function()
 		end
 	end
 end)
+
+-- Trouble plugin mappings
+set('n', '<A-x>', '<cmd>TroubleToggle document_diagnostics<cr>')
+set('n', '<A-S-x>', '<cmd>TroubleToggle workspace_diagnostics<cr>')
