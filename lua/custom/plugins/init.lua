@@ -123,5 +123,31 @@ return {
 		config = function()
 			require('colorizer').setup()
 		end
-	}
+	},
+	-- Themes
+
+	{
+		"EdenEast/nightfox.nvim",
+		config = function()
+			require("nightfox").setup({
+				options = {
+					styles = {
+						comments = "italic",
+						keywords = "bold",
+						strings = "bold",
+						constants = "bold",
+						functions = "bold",
+						operators = "italic",
+					}
+				}
+			})
+			-- vim.cmd.colorscheme 'nightfox'
+		end
+	},
+	{
+		'Shatur/neovim-ayu',
+		config = function()
+			vim.cmd.colorscheme 'ayu-dark'
+		end,
+	},
 }

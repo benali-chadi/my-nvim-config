@@ -105,30 +105,30 @@ require('lazy').setup({
     --   vim.cmd.colorscheme 'onedark'
     -- end,
   },
-  {
-    "EdenEast/nightfox.nvim",
-    config = function()
-      require("nightfox").setup({
-        options = {
-          styles = {
-            comments = "italic",
-            keywords = "bold",
-            strings = "bold",
-            constants = "bold",
-            functions = "bold",
-            operators = "italic",
-          }
-        }
-      })
-      -- vim.cmd.colorscheme 'nightfox'
-    end
-  },
-  {
-    'Shatur/neovim-ayu',
-    config = function()
-      vim.cmd.colorscheme 'ayu-dark'
-    end,
-  },
+  -- {
+  --   "EdenEast/nightfox.nvim",
+  --   config = function()
+  --     require("nightfox").setup({
+  --       options = {
+  --         styles = {
+  --           comments = "italic",
+  --           keywords = "bold",
+  --           strings = "bold",
+  --           constants = "bold",
+  --           functions = "bold",
+  --           operators = "italic",
+  --         }
+  --       }
+  --     })
+  --     -- vim.cmd.colorscheme 'nightfox'
+  --   end
+  -- },
+  -- {
+  --   'Shatur/neovim-ayu',
+  --   config = function()
+  --     vim.cmd.colorscheme 'ayu-dark'
+  --   end,
+  -- },
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
