@@ -71,6 +71,9 @@ require('lazy').setup({
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      -- Adds path completion
+      'hrsh7th/cmp-path',
     },
   },
 
@@ -105,30 +108,30 @@ require('lazy').setup({
     --   vim.cmd.colorscheme 'onedark'
     -- end,
   },
-  -- {
-  --   "EdenEast/nightfox.nvim",
-  --   config = function()
-  --     require("nightfox").setup({
-  --       options = {
-  --         styles = {
-  --           comments = "italic",
-  --           keywords = "bold",
-  --           strings = "bold",
-  --           constants = "bold",
-  --           functions = "bold",
-  --           operators = "italic",
-  --         }
-  --       }
-  --     })
-  --     -- vim.cmd.colorscheme 'nightfox'
-  --   end
-  -- },
-  -- {
-  --   'Shatur/neovim-ayu',
-  --   config = function()
-  --     vim.cmd.colorscheme 'ayu-dark'
-  --   end,
-  -- },
+  {
+    "EdenEast/nightfox.nvim",
+    config = function()
+      require("nightfox").setup({
+        options = {
+          styles = {
+            comments = "italic",
+            keywords = "bold",
+            strings = "bold",
+            constants = "bold",
+            functions = "bold",
+            operators = "italic",
+          }
+        }
+      })
+      -- vim.cmd.colorscheme 'nightfox'
+    end
+  },
+  {
+    'Shatur/neovim-ayu',
+    config = function()
+      vim.cmd.colorscheme 'ayu-mirage'
+    end,
+  },
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -148,10 +151,14 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
+    main = 'ibl',
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = true,
+      indent = { char = '┊' },
+      -- show_trailing_blankline_indent = true,
     },
+    config = function()
+      require('ibl').setup {}
+    end
   },
 
   -- "gc" to comment visual regions/lines
@@ -267,16 +274,21 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local actions = require('telescope.actions')
 require('telescope').setup {
   defaults = {
     mappings = {
       i = {
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         ['<C-u>'] = false,
         ['<C-d>'] = false,
       },
     },
   },
 }
+
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -473,6 +485,7 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+---@diagnostic disable-next-line: missing-fields
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -511,6 +524,7 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'path' }
   },
 }
 
