@@ -152,3 +152,13 @@ end)
 -- Trouble plugin mappings
 set('n', '<A-x>', '<cmd>TroubleToggle document_diagnostics<cr>')
 set('n', '<A-S-x>', '<cmd>TroubleToggle workspace_diagnostics<cr>')
+
+-- Execute current lua file
+set('n', '<leader>l', '<cmd>luafile %<cr>', { desc = "Execute current lua file" })
+
+-- Open Help Tags
+set('n', '<leader>h', '<cmd>lua require("telescope.builtin").help_tags()<cr>', { desc = "Open Help Tags" })
+
+-- Run Plenary test on current buffer
+set('n', '<leader>t', '<cmd>PlenaryBustedFile %<cr>',
+	{ desc = "Run Plenary test on current buffer" })

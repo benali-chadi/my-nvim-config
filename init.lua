@@ -7,6 +7,11 @@ vim.g.maplocal = ' '
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
+-- Global print table function
+_G.P = function(...)
+  print(vim.inspect(...))
+end
+
 require('custom.keymaps')
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -274,20 +279,20 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
-local actions = require('telescope.actions')
-require('telescope').setup {
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-k>"] = actions.move_selection_previous,
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
-      },
-    },
-  },
-}
+-- local actions = require('telescope.actions')
+-- require('telescope').setup {
+--   defaults = {
+--     mappings = {
+--       i = {
+--         ["<C-k>"] = actions.move_selection_previous,
+--         ["<C-j>"] = actions.move_selection_next,
+--         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+--         ['<C-u>'] = false,
+--         ['<C-d>'] = false,
+--       },
+--     },
+--   },
+-- }
 
 
 -- Enable telescope fzf native, if installed
