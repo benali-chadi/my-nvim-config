@@ -7,6 +7,8 @@ vim.g.maplocal = ' '
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
+vim.wo.relativenumber = true
+
 -- Global print table function
 _G.P = function(...)
   print(vim.inspect(...))
