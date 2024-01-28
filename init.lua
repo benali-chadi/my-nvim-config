@@ -446,11 +446,20 @@ end
 local servers = {
   clangd = {},
   -- gopls = {},
-  -- pyright = {},
+  pyright = {},
   volar = { 'vue' },
   rust_analyzer = {},
   tsserver = { 'vue' },
-  html = { filetypes = { 'html', 'twig', 'hbs', 'vue' } },
+
+
+  html   = {
+    filetypes = {
+      'html',
+      'twig',
+      'hbs',
+      'vue',
+    }
+  },
 
   lua_ls = {
     Lua = {
@@ -482,6 +491,44 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
+
+    -- require("sonarlint").setup({
+    --   server = {
+    --     cmd = {
+    --       'sonarlint-language-server',
+    --       '-stdio',
+    --       '-analyzers',
+    --       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarjs.jar"),
+    --       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarcfamily.jar"),
+    --       vim.fn.expand("$MASON/share/sonarlint-analyzers/sonarpython.jar"),
+    --     }
+    --   },
+    --
+    --   settings = {
+    --     sonarlint = {
+    --       rules = {
+    --         ['typescript:S101'] = { level = 'on', parameters = { format = '^[A-Z][a-zA-Z0-9]*$' } },
+    --         ['typescript:S103'] = { level = 'on', parameters = { maximumLineLength = 180 } },
+    --         ['typescript:S106'] = { level = 'on' },
+    --         ['typescript:S107'] = { level = 'on', parameters = { maximumFunctionParameters = 7 } }
+    --
+    --       }
+    --     }
+    --   },
+    --
+    --   filetypes = {
+    --     'javascript',
+    --     'javascriptreact',
+    --     'typescript',
+    --     'typescriptreact',
+    --     'vue',
+    --     'json',
+    --     'scss',
+    --     'python',
+    --     'html',
+    --     'css',
+    --   }
+    -- })
   end
 }
 

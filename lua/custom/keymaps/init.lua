@@ -72,10 +72,10 @@ set('n', '<C-h>', '<C-w>h')     -- move left
 set('n', '<C-j>', '<C-w>j')     -- move down
 set('n', '<C-k>', '<C-w>k')     -- move up
 -- resize windows
-set('n', '<C-Right>', '<C-w>>')
-set('n', '<C-Left>', '<C-w><')
-set('n', '<C-Up>', '<C-w>+')
-set('n', '<C-Down>', '<C-w>-')
+set('n', '<S-Right>', '<C-w>>')
+set('n', '<S-Left>', '<C-w><')
+set('n', '<S-Up>', '<C-w>+')
+set('n', '<S-Down>', '<C-w>-')
 
 -- Move Lines
 -- normal mode
