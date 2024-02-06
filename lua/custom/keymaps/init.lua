@@ -162,3 +162,6 @@ set('n', '<leader>h', '<cmd>lua require("telescope.builtin").help_tags()<cr>', {
 -- Run Plenary test on current buffer
 set('n', '<leader>t', '<cmd>PlenaryBustedFile %<cr>',
 	{ desc = "Run Plenary test on current buffer" })
+
+-- Open Lazy Git
+set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = "Open Lazy Git" })
