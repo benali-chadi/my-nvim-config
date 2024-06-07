@@ -94,10 +94,10 @@ set('v', '<S-tab>', ":'<,'> <<CR>gv")
 
 -- Tabs
 set('n', 't', '<cmd>tabnew<CR>')
-set('n', '<PageUp>', '<cmd>tabprevious<CR>')
-set('n', '<PageDown>', '<cmd>tabnext<CR>')
+set('n', '<S-h>', '<cmd>tabprevious<CR>')
+set('n', '<S-l>', '<cmd>tabnext<CR>')
 -- move tabs
-set('n', '<S-PageUp>', function()
+set('n', '<A-S-h>', function()
 	-- Get Current buffer info
 	local buf_name = vim.api.nvim_buf_get_name(0)
 	local coordinates = vim.api.nvim_win_get_cursor(0)
@@ -117,7 +117,7 @@ set('n', '<S-PageUp>', function()
 		)
 	end
 end)
-set('n', '<S-PageDown>', function()
+set('n', '<A-S-l>', function()
 	-- Get Current buffer info
 	local buf_name = vim.api.nvim_buf_get_name(0)
 	local coordinates = vim.api.nvim_win_get_cursor(0)

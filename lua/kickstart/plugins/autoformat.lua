@@ -43,19 +43,19 @@ return {
 
 
         -- Only attach to clients that support document formatting
-        if not client.server_capabilities.documentFormattingProvider and client.name ~= 'pyright' then
+        if not client.server_capabilities.documentFormattingProvider --[[ and client.name ~= 'pyright' ]] then
           return
         end
 
         -- To format python files
-        if client.name == 'pyright' then
-          vim.api.nvim_create_autocmd('BufWritePost', {
-            group = get_augroup(client),
-            buffer = bufnr,
-            command = 'silent !autopep8 --in-place --aggressive --aggressive ' .. bufname,
-          })
-          return
-        end
+        -- if client.name == 'pyright' then
+        --   vim.api.nvim_create_autocmd('BufWritePost', {
+        --     group = get_augroup(client),
+        --     buffer = bufnr,
+        --     command = 'silent !autopep8 --in-place --aggressive ' .. bufname,
+        --   })
+        --   return
+        -- end
 
         -- Tsserver usually works poorly. Sorry you work with bad languages
         -- You can remove this line if you know what you're doing :)

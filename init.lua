@@ -452,11 +452,11 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
-  -- gopls = {},
+  gopls = {},
   pyright = {},
   volar = { 'vue' },
   rust_analyzer = {},
-  tsserver = { 'vue' },
+  -- tsserver = {},
 
 
   html   = {
@@ -464,7 +464,7 @@ local servers = {
       'html',
       'twig',
       'hbs',
-      'vue',
+      -- 'vue',
     }
   },
 
