@@ -59,9 +59,9 @@ set('n', '<Esc>', '<cmd>noh<CR>')                                             --
 set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<CR>')
 
 -- Buffers
-set('n', '<C-x>', '<tab>')       -- for the weird vim behaviour, to remap <C-i> to <C-n> before remapping <tab>
+set('n', '<C-x>', '<tab>')                            -- for the weird vim behaviour, to remap <C-i> to <C-n> before remapping <tab>
 -- set('n', '<C-j>', '<C-o>')       -- jump back
-set('n', '<C-c>', '<cmd>bd<CR>') -- close
+set('n', '<C-c>', '<cmd>bp<bar>sp<bar>bn<bar>bd<CR>') -- close
 set('n', '<tab>', '<cmd>bnext<CR>')
 set('n', '<S-tab>', '<cmd>bprevious<CR>')
 
@@ -107,8 +107,7 @@ set('n', '<A-S-h>', function()
 
 	if buf_name ~= "" and tabpage_num > 1 then
 		-- Close The current buffer
-		-- require("nvchad_ui.tabufline").close_buffer()
-		vim.api.nvim_command('bd')
+		vim.api.nvim_command('bp | sp | bn | bd')
 		clean_buffers()
 		-- Go to the previous tab and create a new buffer
 		vim.api.nvim_command(
@@ -129,8 +128,7 @@ set('n', '<A-S-l>', function()
 
 	if buf_name ~= "" and tabpages_count > 1 then
 		-- Close The current buffer
-		-- require("nvchad_ui.tabufline").close_buffer()
-		vim.api.nvim_command('bd')
+		vim.api.nvim_command('bp | sp | bn | bd')
 		clean_buffers()
 
 		if tabpage_num < tabpages_count then
@@ -165,3 +163,6 @@ set('n', '<leader>t', '<cmd>PlenaryBustedFile %<cr>',
 
 -- Open Lazy Git
 set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = "Open Lazy Git" })
+
+-- swenv keymaps
+set('n', '<leader>pe', '<cmd>lua require("swenv.api").pick_venv()<cr>', { desc = "Open swenv" })
