@@ -213,4 +213,9 @@ return {
 		end,
 		ft = { "markdown" },
 	},
+
+	-- swenv, python virtual env manager
+	{
+		'AckslD/swenv.nvim'
+	}
 }
