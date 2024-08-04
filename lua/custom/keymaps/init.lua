@@ -166,3 +166,6 @@ set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = "Open Lazy Git" })
 
 -- swenv keymaps
 set('n', '<leader>pe', '<cmd>lua require("swenv.api").pick_venv()<cr>', { desc = "Open swenv" })
+
+-- Neorg
+set('n', '<leader>nn', '<cmd>Neorg<cr>', { desc = "Open Neorg" })
