@@ -2,7 +2,7 @@
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
-vim.g.maplocal = ' '
+vim.g.maplocalleader = '-'
 
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
