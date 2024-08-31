@@ -218,11 +218,14 @@ return {
 	{
 		'AckslD/swenv.nvim'
 	},
+
 	{
 		"vhyrro/luarocks.nvim",
 		priority = 1000, -- We'd like this plugin to load first out of the rest
 		config = true, -- This automatically runs `require("luarocks-nvim").setup()`
 	},
+
+	-- Neorg
 	{
 		"nvim-neorg/neorg",
 		build = ":Neorg sync-parsers",
@@ -244,5 +247,22 @@ return {
 				}
 			})
 		end,
+	},
+
+	-- Auto session
+	{
+		'rmagatti/auto-session',
+		lazy = false,
+		dependencies = {
+			'nvim-telescope/telescope.nvim', -- Only needed if you want to use session lens
+		},
+
+		---enables autocomplete for opts
+		---@module "auto-session"
+		---@type AutoSession.Config
+		opts = {
+			suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+			-- log_level = 'debug',
+		}
 	}
 }
