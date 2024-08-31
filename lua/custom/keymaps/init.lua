@@ -169,3 +169,58 @@ set('n', '<leader>pe', '<cmd>lua require("swenv.api").pick_venv()<cr>', { desc =
 
 -- Neorg
 set('n', '<leader>nn', '<cmd>Neorg<cr>', { desc = "Open Neorg" })
+set('n', '<localleader>w', '<cmd>r ~/notes/templates/week.norg<cr>', { desc = "Insert week template" })
+
+-- Misc
+-- execute command under cursor
+function YankAndExecute()
+	-- Get the current line's content
+	local line = vim.api.nvim_get_current_line()
+
+	-- Execute the command and capture the output
+	local output = vim.fn.system(line)
+	output = vim.fn.trim(output)
+
+	local output_list = vim.split("\n" .. output, "\n")
+
+	-- Insert the output below the current line
+	vim.api.nvim_buf_set_lines(0, vim.fn.line('.') - 1, vim.fn.line('.'), false, output_list)
+
+	-- Delete the original command line
+	vim.api.nvim_buf_set_lines(0, vim.fn.line('.') - 1, vim.fn.line('.'), false, {})
+end
+
+-- Create a Vim command to run the function
+vim.cmd('command! YankAndExecute lua YankAndExecute()')
+set('n', '<leader>x', [[<cmd>YankAndExecute<cr>]], { desc = "Execute command under cursor" })
+
+function ReplaceSelectedTextWithCommandOutput()
+	-- Get the range of the visual selection
+	local start_line, start_col = unpack(vim.fn.getpos("'<"), 2, 3)
+	local end_line, end_col = unpack(vim.fn.getpos("'>"), 2, 3)
+
+	-- Get the selected text
+	local lines = vim.fn.getline(start_line, end_line)
+	if #lines == 0 then return end
+
+
+	-- Adjust the last line based on end_col, but ensure end_col is within bounds
+	local last_line_len = #lines[#lines]
+	if end_col > last_line_len then
+		end_col = last_line_len
+	end
+	lines[#lines] = lines[#lines]:sub(1, end_col)
+
+	-- Extract the command from the selected text
+	local command = table.concat(lines, "\n"):sub(start_col, #lines == 1 and end_col or -1)
+
+	-- Execute the command and capture the output
+	local output = vim.fn.systemlist(command)
+
+	-- Replace the selected text with the output
+	vim.api.nvim_buf_set_text(0, start_line - 1, start_col - 1, end_line - 1, end_col, output)
+end
+
+vim.cmd('command! ReplaceCommandOutput lua ReplaceSelectedTextWithCommandOutput()')
+set('v', '<leader>x', [[:<C-u>ReplaceCommandOutput<CR>]],
+	{ desc = "Execute command under cursor" })
