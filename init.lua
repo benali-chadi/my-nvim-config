@@ -9,6 +9,9 @@ vim.opt.background = "dark"
 
 vim.wo.relativenumber = true
 
+-- Codeium disable by default
+vim.g.codeium_enabled = false
+
 -- Global print table function
 _G.P = function(...)
   print(vim.inspect(...))

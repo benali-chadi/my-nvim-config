@@ -158,8 +158,8 @@ set('n', '<leader>l', '<cmd>luafile %<cr>', { desc = "Execute current lua file" 
 set('n', '<leader>h', '<cmd>lua require("telescope.builtin").help_tags()<cr>', { desc = "Open Help Tags" })
 
 -- Run Plenary test on current buffer
-set('n', '<leader>t', '<cmd>PlenaryBustedFile %<cr>',
-	{ desc = "Run Plenary test on current buffer" })
+-- set('n', '<leader>t', '<cmd>PlenaryBustedFile %<cr>',
+-- 	{ desc = "Run Plenary test on current buffer" })
 
 -- Open Lazy Git
 set('n', '<leader>gg', '<cmd>LazyGit<cr>', { desc = "Open Lazy Git" })
@@ -170,6 +170,9 @@ set('n', '<leader>pe', '<cmd>lua require("swenv.api").pick_venv()<cr>', { desc =
 -- Neorg
 set('n', '<leader>nn', '<cmd>Neorg<cr>', { desc = "Open Neorg" })
 set('n', '<localleader>w', '<cmd>r ~/notes/templates/week.norg<cr>', { desc = "Insert week template" })
+
+-- Tree-Sitter-Context toggle
+set('n', '<leader>tc', '<cmd>TSContextToggle<cr>', { desc = "Toggle Context" })
 
 -- Misc
 -- execute command under cursor

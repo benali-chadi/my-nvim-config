@@ -289,8 +289,53 @@ return {
 					{ name = "Focus", duration = "25m" },
 					{ name = "Break", duration = "5m" },
 					{ name = "Focus", duration = "25m" },
+				},
+				learning = {
+					{ name = "Focus", duration = "45m" },
+					{ name = "Break", duration = "15m" },
+					{ name = "Focus", duration = "45m" },
 				}
 			}
 		},
+	},
+	{
+		"lervag/vimtex",
+		lazy = false, -- we don't want to lazy load VimTeX
+		-- tag = "v2.15", -- uncomment to pin to a specific release
+		init = function()
+			-- This is necessary for VimTeX to load properly. The "indent" is optional.
+			-- Note: Most plugin managers will do this automatically!
+			vim.cmd('filetype plugin indent on')
+
+			-- This enables Vim's and Neovim's syntax-related features. Without this, some
+			-- VimTeX features will not work (see ":help vimtex-requirements" for more info).
+			-- Note: Most plugin managers will do this automatically!
+			vim.cmd('syntax enable')
+
+			-- Viewer options: One may configure the viewer either by specifying a built-in
+			-- viewer method:
+			vim.g.vimtex_view_method = 'zathura'
+			vim.g.maplocalleader = '-'
+
+			-- VimTeX uses latexmk as the default compiler backend. If you use it, which is
+			-- strongly recommended, you probably don't need to configure anything. If you
+			-- want another compiler backend, you can change it as follows. The list of
+			-- supported backends and further explanation is provided in the documentation,
+			-- see ":help vimtex-compiler".
+			vim.g.vimtex_compiler_method = 'latexrun'
+
+			vim.g.vimtex_view_general_options = '--unique file:@pdf\\#src:@line@tex'
+		end
+	},
+	-- Tree-Sitter-Context
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("treesitter-context").setup({
+				enable = true
+			})
+		end
 	}
+
 }
