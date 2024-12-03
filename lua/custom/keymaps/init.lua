@@ -41,6 +41,9 @@ local function clean_buffers()
 	-- end
 end
 
+-- Close all buffers
+set('n', '<leader>cab', '<cmd>%bd<CR>', { desc = '[C]lose [A]ll [B]uffers' })
+
 -- Save folds state
 vim.cmd([[
 augroup AutoSaveFolds
