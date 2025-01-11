@@ -244,6 +244,7 @@ return {
 							default_workspace = "areas",
 						},
 					},
+					["core.export"] = {},
 				}
 			})
 		end,
