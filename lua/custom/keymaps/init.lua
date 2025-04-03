@@ -173,6 +173,7 @@ set('n', '<leader>pe', '<cmd>lua require("swenv.api").pick_venv()<cr>', { desc =
 -- Neorg
 set('n', '<leader>nn', '<cmd>Neorg<cr>', { desc = "Open Neorg" })
 set('n', '<localleader>w', '<cmd>r ~/notes/templates/week.norg<cr>', { desc = "Insert week template" })
+set('v', '<localleader>tt', ":<C-u>'<,'>s/\\(-\\+\\)/\\1 ( )/g<CR>", { desc = "Turn Bullet points to tasks" })
 
 -- Tree-Sitter-Context toggle
 set('n', '<leader>tc', '<cmd>TSContextToggle<cr>', { desc = "Toggle Context" })
