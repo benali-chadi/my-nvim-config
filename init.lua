@@ -460,7 +460,6 @@ local servers = {
   pyright = {},
   volar = { 'vue' },
   rust_analyzer = {},
-  tsserver = {},
 
 
   html   = {
