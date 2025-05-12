@@ -6,6 +6,7 @@ vim.g.maplocalleader = '-'
 
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+vim.opt.tabstop = 4
 
 vim.wo.relativenumber = true
 
@@ -459,7 +460,7 @@ local servers = {
   pyright = {},
   volar = { 'vue' },
   rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {},
 
 
   html   = {
