@@ -193,10 +193,10 @@ return {
 		end
 	},
 
-	-- my local vim-plug learning
-	{
-		dir = '/Users/benalioulhajchadi/vim-plug-learning/',
-	},
+	-- -- my local vim-plug learning
+	-- {
+	-- 	dir = '/Users/benalioulhajchadi/vim-plug-learning/',
+	-- },
 
 	-- Plenary
 	{
@@ -228,8 +228,7 @@ return {
 	-- Neorg
 	{
 		"nvim-neorg/neorg",
-		build = ":Neorg sync-parsers",
-		dependencies = { "luarocks.nvim", "nvim-lua/plenary.nvim" },
+		dependencies = { "luarocks.nvim" },
 		-- put any other flags you wanted to pass to lazy here!
 		config = function()
 			require("neorg").setup({
@@ -337,5 +336,49 @@ return {
 				enable = true
 			})
 		end
-	}
+	},
+	-- Code Companion
+	{
+		"olimorris/codecompanion.nvim", -- The KING of AI programming
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'nvim-treesitter/nvim-treesitter',
+		},
+		opts = {
+			adapters = {
+				ollama = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						-- name = 'llama',
+						schema = {
+							model = {
+								default = "deepseek-r1",
+							},
+							-- num_ctx = {
+							-- 	default = 20000,
+							-- },
+						},
+					})
+				end,
+			},
+			strategies = {
+				-- Change the default chat adapter
+				chat = {
+					adapter = 'ollama',
+				},
+				inline = {
+					adapter = "ollama",
+					keymaps = {
+						accept_change = {
+							modes = { n = "ga" },
+							description = "Accept the suggested change",
+						},
+						reject_change = {
+							modes = { n = "gr" },
+							description = "Reject the suggested change",
+						},
+					},
+				},
+			},
+		}
+	},
 }

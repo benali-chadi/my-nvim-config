@@ -231,3 +231,9 @@ end
 vim.cmd('command! ReplaceCommandOutput lua ReplaceSelectedTextWithCommandOutput()')
 set('v', '<leader>x', [[:<C-u>ReplaceCommandOutput<CR>]],
 	{ desc = "Execute command under cursor" })
+
+
+--- CodeCompanion
+set('n', '<leader>cct', '<cmd>CodeCompanionChat toggle<cr>', { desc = "toggle Code Companion Chat" })
+set('n', '<leader>ccc', '<cmd>CodeCompanionChat<cr>', { desc = "New Code Companion Chat" })
+set({ 'n', 'v' }, '<leader>cca', '<cmd>CodeCompanionActions<cr>', { desc = "Code Companion Actions" })
