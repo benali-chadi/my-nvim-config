@@ -3,6 +3,13 @@
 -- Use your language server to automatically format your code on save.
 -- Adds additional commands as well to manage the behavior
 
+-- local logger = require('helpers')[1]
+-- local map = require('helpers')[2]
+local helpers = require('helpers')
+local logger = helpers.log
+local map = helpers.map
+local has_value = helpers.has_value
+
 return {
   'neovim/nvim-lspconfig',
   config = function()
@@ -45,8 +52,29 @@ return {
           return
         end
 
+
+
+        if client.name == 'eslint' then
+          vim.api.nvim_create_autocmd('BufWritePost', {
+            group = get_augroup(client),
+            buffer = bufnr,
+            command = 'silent EslintFixAll',
+          })
+          return
+        end
+
         -- Only attach to clients that support document formatting
         if not client.server_capabilities.documentFormattingProvider and client.name ~= 'pyright' then
+          return
+        end
+
+        -- To format crystal files
+        if client.name == 'crystalline' then
+          vim.api.nvim_create_autocmd('BufWritePost', {
+            group = get_augroup(client),
+            buffer = bufnr,
+            command = 'silent !crystal tool format ' .. bufname,
+          })
           return
         end
 
@@ -77,7 +105,14 @@ return {
           group = get_augroup(client),
           buffer = bufnr,
           callback = function()
-            if not format_is_enabled then
+            local clients = vim.lsp.get_clients()
+            local client_names = map(clients, function(v)
+              return v.name
+            end)
+
+            -- disabling ts_ls formatter when eslint is enabled in a buffer
+            if not format_is_enabled or (client.name == 'ts_ls' and has_value(client_names, 'eslint')) then
+              logger.debug('in ts_ls condition')
               return
             end
 

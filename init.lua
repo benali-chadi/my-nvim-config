@@ -403,19 +403,24 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
+
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
     end
 
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+  end
+
+  if client.name == "eslint" then
+    nmap('<leader>ef', '<cmd>EslintFixAll<cr>', "Eslint Fix All")
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
@@ -460,6 +465,7 @@ local servers = {
   pyright = {},
   volar = { 'vue' },
   rust_analyzer = {},
+  eslint = {},
 
 
   html   = {
@@ -594,6 +600,17 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'path' }
   },
+}
+
+-- Crystal treesitter config
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.crystal = {
+  install_info = {
+    url = "~/tree-sitter-crystal",
+    files = { "src/parser.c", "src/scanner.c" },
+    branch = "main",
+  },
+  filetype = "cr",
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`

@@ -237,3 +237,6 @@ set('v', '<leader>x', [[:<C-u>ReplaceCommandOutput<CR>]],
 set('n', '<leader>cct', '<cmd>CodeCompanionChat toggle<cr>', { desc = "toggle Code Companion Chat" })
 set('n', '<leader>ccc', '<cmd>CodeCompanionChat<cr>', { desc = "New Code Companion Chat" })
 set({ 'n', 'v' }, '<leader>cca', '<cmd>CodeCompanionActions<cr>', { desc = "Code Companion Actions" })
+
+--- Eslint
+set('n', '<leader>ef', '<cmd>EslintFixAll<cr>', { desc = "Eslint Fix All" })
