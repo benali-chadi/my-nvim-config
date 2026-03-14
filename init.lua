@@ -5,7 +5,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '-'
 
 vim.opt.termguicolors = true
-vim.opt.background = "dark"
 vim.opt.tabstop = 4
 
 vim.wo.relativenumber = true
@@ -613,5 +612,6 @@ parser_config.crystal = {
   filetype = "cr",
 }
 
+require('custom.colors')
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
